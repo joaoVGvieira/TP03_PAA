@@ -212,12 +212,13 @@ void computeLPSArray(char* pat, int M, int* lps)
  int SearchString(char* text, char* pat)
 {
 	int m = strlen(pat);
+    int n = strlen(text); // tamanho do texto que vamo procurar o padrao
 	unsigned long R;
 	unsigned long patMask[CHAR_MAX + 1];           
 	int i;
     int cont=0;
 	if (pat[0] == '\0') return 0;
-	if (m > 31) return -1; 
+	if (m > n) return -1; 
 
 	R = ~1;
 
