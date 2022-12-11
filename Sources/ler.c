@@ -63,16 +63,12 @@ int pesquisaCoincidencia( char *txt,  char *pat)
 }
 
 void func(){
-    int qntCaracter;
-    int qntElementos;
+    int qntCaracter = 1 + rand() % (8 - 1);
+ ;
+    int qntElementos = 1 + rand() % (20 - 1);;
     int contElementos = 0;
     int contParecido = 0;
     char nucleos[4] = {'A','T','C','G'};
-    printf("Digite a qnt de caracteres: ");
-    scanf("%d", &qntCaracter);
-    printf("Digie a qnt de elemntos: ");
-    scanf("%d", &qntElementos);
-
     char* elemento = (char*)malloc(qntCaracter*sizeof(char)); // elemento atual verificado
     
     char** todosElementos = (char**)calloc(qntElementos , sizeof(char*)); // matriz com todos os elementos
@@ -106,7 +102,7 @@ void func(){
                 todosElementos[contElementos][i] = elemento[i];
                 
             }
-            printf("\nPadrao = %s\n", elemento);
+           //printf("\nPadrao = %s\n", elemento);
 
             leitura( "cachorro.txt", elemento, matrizOcorrencias, 0, contElementos);
             leitura( "chimp.txt", elemento, matrizOcorrencias, 1, contElementos);
@@ -117,13 +113,7 @@ void func(){
         
     }
 
-    printf("\n");
-    for(int i = 0; i < 3; i ++){
-        for(int j = 0; j < contElementos; j ++){
-            printf("%ld ", matrizOcorrencias[i][j]);
-        }
-        printf("\n");
-    }
+
 
     printf("Similaridade cachorro e chimpanze = ");
     CalculaSimilaridade(matrizOcorrencias,  0,  1,  qntElementos);
