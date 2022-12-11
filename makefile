@@ -1,3 +1,3 @@
 all:  
-	gcc Sources/*.c   main.c -o exec
+	gcc Sources/*.c   main.c -o exec -lm
 	./exec
