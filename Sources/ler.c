@@ -62,7 +62,7 @@ int pesquisaCoincidencia( char *txt,  char *pat)
     return cont;
 }
 
-void func(){
+void iniciar(){
     int qntCaracter = 1 + rand() % (8 - 1);
  ;
     int qntElementos = 1 + rand() % (20 - 1);;

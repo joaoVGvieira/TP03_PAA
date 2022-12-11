@@ -11,7 +11,7 @@ int pesquisaCoincidencia( char *txt,  char *pat);
 
 void badCharHeuristic( char *str, int size,int badchar[NO_OF_CHARS] );
 
-void func();
+void iniciar();
 
 int CalculaSimilaridade(long int **matrizOcorrencias, int linha1, int linha2, int qntPadroes);
 

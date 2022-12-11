@@ -21,7 +21,7 @@ int main()
         case 0 :
             break;
         case 1 :
-            func(); 
+            iniciar(); 
             break;
         case 2 :
             printf(
