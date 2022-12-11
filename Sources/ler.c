@@ -2,6 +2,7 @@
 #include <string.h>
 #include <limits.h>
 #include <math.h>
+
 #define NO_OF_CHARS 256
 
 void leitura( char* caminhoArquivo, char*  padrao , long int** matrizOcorrencias, int quaLinha, int coluna)
@@ -244,6 +245,7 @@ void computeLPSArray(char* pat, int M, int* lps)
 	}
 
 	return cont;
+
 }
 
 int CalculaSimilaridade(long int **matrizOcorrencias, int linha1, int linha2, int qntPadroes){
