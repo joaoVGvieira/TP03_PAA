@@ -3,29 +3,33 @@
 #include <limits.h>
 #define NO_OF_CHARS 256
 
-int leitura( char* caminhoArquivo, char*  padrao , long int** matrizOcorrencias, int quaLinha, int coluna)
-{
+void leitura( char* caminhoArquivo, char*  padrao , long int** matrizOcorrencias, int quaLinha, int coluna)
+{   
+    printf("N abriu arquivo");
     FILE *arq;
-    char elemento[30000];
+    printf("1");
+    char elemento[20000];
+    printf("2");
     long int numOcorrencias = 0;
+    printf("3");
     arq = fopen( caminhoArquivo, "r" );
-
+    printf("4 ");
     while (!feof( arq )){
 
         fscanf( arq, "%s", elemento );
         numOcorrencias += pesquisaCoincidencia( elemento, padrao );
-        printf("%d ", pesquisaCoincidencia( elemento, padrao ));
+        //printf("%d ", pesquisaCoincidencia( elemento, padrao ));
 
     }
-
-    printf("%ld\n\n",numOcorrencias);
-    
+    printf("enotru print ");
+    //printf("%ld\n",numOcorrencias);
+    printf("vai fechar arquivo");
     fclose( arq );
-
+    printf("fecha arquivo ");
     matrizOcorrencias[quaLinha][coluna] = numOcorrencias;
+    printf("atualiza matriz");
 }
     
-
 int max( int a, int b ) { return ( a > b ) ? a : b; }
 
 void badCharHeuristic( char *str, int size, int badchar[NO_OF_CHARS] )
@@ -83,10 +87,17 @@ void func()
 
     char* elemento = (char*)malloc(qntCaracter*sizeof(char)); // elemento atual verificado
     
-    char** todosElementos = (char**)malloc(qntElementos * sizeof(char*)); // matriz com todos os elementos
-    for (int  i = 0; i <qntCaracter ; i++){
-        todosElementos[i] = (char*) malloc(sizeof(char));
+    char** todosElementos = (char**)calloc(qntElementos , sizeof(char*)); // matriz com todos os elementos
+    for (int  i = 0; i <qntElementos ; i++){
+        todosElementos[i] = (char*) calloc(qntCaracter,sizeof(char));
     }
+
+    // for(int i = 0; i < qntElementos; i ++){
+    //     for(int j = 0; j < qntCaracter; j ++){
+    //         printf("%c ", qntElementos[i][j]);
+    //     }
+    //     printf("\n");
+    // }
 
     long int** matrizOcorrencias = (long int**)malloc(3 * sizeof(long int*)); // matriz de ocorrencia dos animais
     for ( int  i = 0; i <3 ; i++){
@@ -100,36 +111,39 @@ void func()
         }
 
 
-        for(int i = 0; i < contElementos; i ++){ // verifica se o elemento ja existe 
-            contParecido = 0;
-            for(int j = 0; j < qntCaracter; j++){
+         for(int i = 0; i < contElementos; i ++){ // verifica se o elemento ja existe 
+                 contParecido = 0;
+             for(int j = 0; j < qntCaracter; j++){
                 if(elemento[j] == todosElementos[i][j]) contParecido ++;   
             }
             if( contParecido == qntCaracter ) break;
         }
 
 
-        if( contParecido < qntCaracter ){ // adiciona o elemento caso n exista e chama a funcao
+        if( contParecido < qntCaracter ){ //adiciona o elemento caso n exista e chama a funcao
             for(int i = 0; i < qntCaracter; i++){
                 todosElementos[contElementos][i] = elemento[i];
                 
             }
             printf("\nPadrao = %s\n", elemento);
 
-            leitura( "cachorro.txt", elemento, matrizOcorrencias, contElementos, 0);
-            leitura( "chimp.txt", elemento, matrizOcorrencias, contElementos, 1);
-            leitura( "humano.txt", elemento, matrizOcorrencias, contElementos, 2);
+            leitura( "cachorro.txt", elemento, matrizOcorrencias, 0, contElementos);
+            printf("Entra chimp");
+            leitura( "chimp.txt", elemento, matrizOcorrencias, 1, contElementos);
+            leitura( "humano.txt", elemento, matrizOcorrencias, 2, contElementos);
             contElementos ++;
         }
         
     }
     printf("\n");
-    for(int i = 0; i < contElementos; i ++){
-        for(int j = 0; j < 3; j ++){
+    for(int i = 0; i < 3; i ++){
+        for(int j = 0; j < contElementos; j ++){
             printf("%ld ", matrizOcorrencias[i][j]);
         }
         printf("\n");
     }
+
+    free(matrizOcorrencias);
 
 }
  
