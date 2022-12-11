@@ -4,7 +4,6 @@
 int main()
 {
     int opc;
-    char nome_arquivo[1000];
     do
     {
         printf("\n");

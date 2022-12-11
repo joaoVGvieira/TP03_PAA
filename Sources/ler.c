@@ -5,29 +5,18 @@
 
 void leitura( char* caminhoArquivo, char*  padrao , long int** matrizOcorrencias, int quaLinha, int coluna)
 {   
-    printf("N abriu arquivo");
+  
     FILE *arq;
-    printf("1");
     char elemento[20000];
-    printf("2");
     long int numOcorrencias = 0;
-    printf("3");
     arq = fopen( caminhoArquivo, "r" );
-    printf("4 ");
     while (!feof( arq )){
-
         fscanf( arq, "%s", elemento );
         numOcorrencias += pesquisaCoincidencia( elemento, padrao );
-        //printf("%d ", pesquisaCoincidencia( elemento, padrao ));
-
     }
-    printf("enotru print ");
-    //printf("%ld\n",numOcorrencias);
-    printf("vai fechar arquivo");
     fclose( arq );
-    printf("fecha arquivo ");
     matrizOcorrencias[quaLinha][coluna] = numOcorrencias;
-    printf("atualiza matriz");
+   
 }
     
 int max( int a, int b ) { return ( a > b ) ? a : b; }
@@ -128,7 +117,6 @@ void func()
             printf("\nPadrao = %s\n", elemento);
 
             leitura( "cachorro.txt", elemento, matrizOcorrencias, 0, contElementos);
-            printf("Entra chimp");
             leitura( "chimp.txt", elemento, matrizOcorrencias, 1, contElementos);
             leitura( "humano.txt", elemento, matrizOcorrencias, 2, contElementos);
             contElementos ++;
@@ -147,3 +135,108 @@ void func()
 
 }
  
+ // Kmp Algoritmo 
+
+void computeLPSArray(char* pat, int M, int* lps);
+void KMPSearch(char* pat, char* txt)
+{
+    int M = strlen(pat);
+    int N = strlen(txt);
+    
+    int cont=0;
+   
+    int lps[M];
+
+    computeLPSArray(pat, M, lps);
+ 
+    int i = 0; 
+    int j = 0; 
+    while ((N - i) >= (M - j)) {
+        if (pat[j] == txt[i]) {
+            j++;
+            i++;
+        }
+ 
+        if (j == M) {
+            cont+=1;
+            j = lps[j - 1];
+        }
+ 
+    
+        else if (i < N && pat[j] != txt[i]) {
+   
+            if (j != 0)
+                j = lps[j - 1];
+            else
+                i = i + 1;
+        }
+    }
+}
+ 
+
+void computeLPSArray(char* pat, int M, int* lps)
+{
+    
+    int len = 0;
+ 
+    lps[0] = 0; 
+ 
+    
+    int i = 1;
+    while (i < M) {
+        if (pat[i] == pat[len]) {
+            len++;
+            lps[i] = len;
+            i++;
+        }
+        else 
+        {
+          
+            if (len != 0) {
+                len = lps[len - 1];
+ 
+             
+            }
+            else 
+            {
+                lps[i] = 0;
+                i++;
+            }
+        }
+    }
+}
+ 
+
+ // Shift-And
+
+ int SearchString(char* text, char* pat)
+{
+	int m = strlen(pat);
+	unsigned long R;
+	unsigned long patMask[CHAR_MAX + 1];           
+	int i;
+    int cont=0;
+	if (pat[0] == '\0') return 0;
+	if (m > 31) return -1; 
+
+	R = ~1;
+
+	for (i = 0; i <= CHAR_MAX; ++i)
+		patMask[i] = ~0;
+
+	for (i = 0; i < m; ++i)
+		patMask[pat[i]] &= ~(1UL << i);
+
+	for (i = 0; text[i] != '\0'; ++i)
+	{
+		R |= patMask[text[i]];
+		R <<= 1;
+
+		if (0 == (R & (1UL << m))){
+            cont+=1;
+        }
+			
+	}
+
+	return cont;
+}
