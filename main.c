@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Libs/ler.h"
-int main(){
+int main()
+{
     int opc;
     char nome_arquivo[1000];
     do
@@ -10,7 +11,7 @@ int main(){
         printf(
           " _________________(MENU PRINCIPAL)___________________ \n"
           "|                                                    |\n"
-          "| LER ARQUIVO = 1                                    |\n"
+          "| INICIAR = 1                                        |\n"
           "| ENCERRAR OPERACOES = 0                             |\n"
           "|____________________________________________________|\n\n");
         printf("DIGITE A OPERACAO DESEJADA: ");
@@ -18,9 +19,7 @@ int main(){
         switch (opc)
         {
         case 1 :
-            printf("\nDIGITE O NOME DO ARQUIVO DE ENTRADA: ");
-            scanf(" %[^\n]s ",nome_arquivo);
-            leitura(nome_arquivo);         
+            func(); 
             break;
         case 0:
             break;
