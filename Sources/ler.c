@@ -1,6 +1,7 @@
 #include "../Libs/ler.h"
 #include <string.h>
 #include <limits.h>
+#include <math.h>
 #define NO_OF_CHARS 256
 
 void leitura( char* caminhoArquivo, char*  padrao , long int** matrizOcorrencias, int quaLinha, int coluna)
@@ -62,8 +63,7 @@ int pesquisaCoincidencia( char *txt,  char *pat)
     return cont;
 }
 
-void func()
-{
+void func(){
     int qntCaracter;
     int qntElementos;
     int contElementos = 0;
@@ -81,13 +81,6 @@ void func()
         todosElementos[i] = (char*) calloc(qntCaracter,sizeof(char));
     }
 
-    // for(int i = 0; i < qntElementos; i ++){
-    //     for(int j = 0; j < qntCaracter; j ++){
-    //         printf("%c ", qntElementos[i][j]);
-    //     }
-    //     printf("\n");
-    // }
-
     long int** matrizOcorrencias = (long int**)malloc(3 * sizeof(long int*)); // matriz de ocorrencia dos animais
     for ( int  i = 0; i <3 ; i++){
         matrizOcorrencias[i] = (long int*) malloc(sizeof(long int)*qntElementos);
@@ -100,9 +93,9 @@ void func()
         }
 
 
-         for(int i = 0; i < contElementos; i ++){ // verifica se o elemento ja existe 
-                 contParecido = 0;
-             for(int j = 0; j < qntCaracter; j++){
+        for(int i = 0; i < contElementos; i ++){ // verifica se o elemento ja existe 
+                contParecido = 0;
+            for(int j = 0; j < qntCaracter; j++){
                 if(elemento[j] == todosElementos[i][j]) contParecido ++;   
             }
             if( contParecido == qntCaracter ) break;
@@ -119,10 +112,12 @@ void func()
             leitura( "cachorro.txt", elemento, matrizOcorrencias, 0, contElementos);
             leitura( "chimp.txt", elemento, matrizOcorrencias, 1, contElementos);
             leitura( "humano.txt", elemento, matrizOcorrencias, 2, contElementos);
+
             contElementos ++;
         }
         
     }
+
     printf("\n");
     for(int i = 0; i < 3; i ++){
         for(int j = 0; j < contElementos; j ++){
@@ -130,6 +125,15 @@ void func()
         }
         printf("\n");
     }
+
+    printf("Similaridade cachorro e chimpanze = ");
+    CalculaSimilaridade(matrizOcorrencias,  0,  1,  qntElementos);
+    printf("Similaridade cachorro e humano = ");
+    CalculaSimilaridade(matrizOcorrencias,  0,  2,  qntElementos);
+    printf("Similaridade humano e chimpanze = ");
+    CalculaSimilaridade(matrizOcorrencias,  1,  2,  qntElementos);
+
+
 
     free(matrizOcorrencias);
 
@@ -240,4 +244,27 @@ void computeLPSArray(char* pat, int M, int* lps)
 	}
 
 	return cont;
+}
+
+int CalculaSimilaridade(long int **matrizOcorrencias, int linha1, int linha2, int qntPadroes){
+
+    double nominador = 0;
+    double denominador1 = 0;
+    double denominador2 = 0;
+
+    for(int i = 0; i < qntPadroes; i ++){
+        nominador += matrizOcorrencias[linha1][i] * matrizOcorrencias[linha2][i];
+        denominador1 += matrizOcorrencias[linha1][i] * matrizOcorrencias[linha1][i];
+        denominador2 += matrizOcorrencias[linha2][i] * matrizOcorrencias[linha2][i];
+    }
+
+    denominador1 = sqrt(denominador1);
+    denominador2 = sqrt(denominador2);
+
+
+    double similaridade = nominador / ( denominador1 * denominador2);
+
+
+    printf(" %lf\n", similaridade);
+    return similaridade;
 }
