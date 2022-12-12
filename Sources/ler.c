@@ -133,7 +133,7 @@ void leitura1( char* caminhoArquivo, char*  padrao , long int** matrizOcorrencia
 {   
   
     FILE *arq;
-    char elemento[20000];
+    char elemento[300000];
     long int numOcorrencias = 0;
     arq = fopen( caminhoArquivo, "r" );
     while (!feof( arq )){
@@ -296,7 +296,7 @@ void leitura2( char* caminhoArquivo, char*  padrao , long int** matrizOcorrencia
 {   
   
     FILE *arq;
-    char elemento[20000];
+    char elemento[300000];
     long int numOcorrencias = 0;
     arq = fopen( caminhoArquivo, "r" );
     while (!feof( arq )){
