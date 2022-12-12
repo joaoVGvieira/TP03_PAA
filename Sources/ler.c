@@ -147,9 +147,9 @@ void leitura1( char* caminhoArquivo, char*  padrao , long int** matrizOcorrencia
 
 
 void iniciar1(){
-    int qntCaracter = 1 + rand() % (8 - 1);
+    int qntCaracter = 7;
  ;
-    int qntElementos = 1 + rand() % (20 - 1);;
+    int qntElementos = 7;
     int contElementos = 0;
     int contParecido = 0;
     char nucleos[4] = {'A','T','C','G'};
@@ -343,9 +343,9 @@ void leitura2( char* caminhoArquivo, char*  padrao , long int** matrizOcorrencia
 }
 
 void iniciar2(){
-    int qntCaracter = 1 + rand() % (8 - 1);
+    int qntCaracter = 7;
  ;
-    int qntElementos = 1 + rand() % (20 - 1);;
+    int qntElementos = 7;
     int contElementos = 0;
     int contParecido = 0;
     char nucleos[4] = {'A','T','C','G'};
