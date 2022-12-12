@@ -4,45 +4,24 @@
 #include "Libs/ler.h"
 int main()
 {
-    int opc;
-    do
-    {
-        printf("\n");
-        printf(
-          " _________________(MENU PRINCIPAL)___________________ \n"
-          "|                                                    |\n"
-          "| INICIAR = 1                                        |\n"
-          "| ENCERRAR OPERACOES = 0                             |\n"
-          "|____________________________________________________|\n\n");
-        printf("DIGITE A OPERACAO DESEJADA: ");
-        scanf("%d",&opc);
-        switch (opc)
-        {
-        case 0 :
-            break;
-        case 1 :
-            iniciar(); 
-            break;
-        case 2 :
-            printf(
-                "\n ______________Similaridade Entre Pares______________ \n");
-            
-            clock_t inicioBoyerMoore = clock();
-            
-            printf("|                                                    |\n");
-            printf("|_________________Humano e Chimpanzé_________________|\n");
-            //printf("|                      %.15lf                        |\n", similaridade);
-            printf("|_________________Humano e Cachorro__________________|\n");
-            //printf("|                      %.15lf                        |\n", similaridade);
-            printf("|________________Chimpanzé e Cachorro________________|\n");
-            //printf("|                      %.15lf                        |\n", similaridade);
-            printf("|                                                    |\n");
-            printf("|____________________________________________________|\n");
-
-            break;
-
-        default:
-            break;
-        }
-    }while(opc!=0);
+    srand(time(NULL));
+    printf("\n------------------  Similaridade Boyer-Moore  -----------------------\n\n");
+    clock_t boyerMoore = clock();
+    iniciar(); 
+    clock_t finalBoyerMoore = clock();
+    printf("\n\n------------------ Similaridade KMP -----------------------\n\n");
+    clock_t KMP = clock();
+    iniciar1();
+    clock_t finalKMP = clock();
+    printf("\n\n------------------ Similaridade Shift-And -----------------------\n\n");
+    clock_t shiftAnd = clock();
+    iniciar2();
+    clock_t finalshiftAnd = clock();
+    printf("\n\n------------------ Tempo de Execucao Total -----------------------\n\n");
+    printf("Boyer-Moore: %.2lfs\n", ((float)(finalBoyerMoore-boyerMoore)) / (CLOCKS_PER_SEC));
+    printf("KMP: %.2lfs\n", ((float)(finalKMP-KMP)) / (CLOCKS_PER_SEC));
+    printf("Shift-And: %.2lfs\n", ((float)(finalshiftAnd-shiftAnd)) / (CLOCKS_PER_SEC));
+    printf("\n------------------------------------------------------------------\n");
+           
 }
+
