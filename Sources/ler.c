@@ -8,7 +8,7 @@ void leitura( char* caminhoArquivo, char*  padrao , long int** matrizOcorrencias
 {   
   
     FILE *arq;
-    char elemento[20000];
+    char elemento[300000];
     long int numOcorrencias = 0;
     arq = fopen( caminhoArquivo, "r" );
     while (!feof( arq )){
@@ -407,7 +407,7 @@ void iniciar2(){
     free(matrizOcorrencias);
 
 }
-int CalculaSimilaridade(long int **matrizOcorrencias, int linha1, int linha2, int qntPadroes){
+void CalculaSimilaridade(long int **matrizOcorrencias, int linha1, int linha2, int qntPadroes){
 
     double nominador = 0;
     double denominador1 = 0;
@@ -427,5 +427,5 @@ int CalculaSimilaridade(long int **matrizOcorrencias, int linha1, int linha2, in
 
 
     printf(" %lf\n", similaridade);
-    return similaridade;
 }
+

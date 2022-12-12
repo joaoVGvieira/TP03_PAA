@@ -21,7 +21,7 @@ void computeLPSArray(char* pat, int M, int* lps);
 
 int SearchString(char* text, char* pat);
 
-int CalculaSimilaridade(long int **matrizOcorrencias, int linha1, int linha2, int qntPadroes);
+void CalculaSimilaridade(long int **matrizOcorrencias, int linha1, int linha2, int qntPadroes);
 
 void leituraKMP( char* caminhoArquivo, char*  padrao , long int** matrizOcorrencias, int quaLinha, int coluna);
 
