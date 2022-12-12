@@ -2,12 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "Algoritmos.h"
-#define NO_OF_CHARS 256
-
 void leitura( char* caminhoArquivo, char*  padrao , long int** matrizOcorrencias, int quaLinha, int coluna);
-
-
-
 
 void iniciar();
 void iniciar1();
