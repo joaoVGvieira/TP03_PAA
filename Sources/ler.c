@@ -4,6 +4,8 @@
 #include <math.h>
 #include <time.h>
 
+#define K 7
+
 void leitura( char* caminhoArquivo, char*  padrao , long int** matrizOcorrencias, int quaLinha, int coluna)
 {   
   
@@ -65,8 +67,8 @@ int pesquisaCoincidencia( char *txt,  char *pat)
 
 void iniciar(){
    
-    int qntCaracter = 7;
-    int qntElementos = 7;
+    int qntCaracter = K;
+    int qntElementos = K;
     int contElementos = 0;
     int contParecido = 0;
     char nucleos[4] = {'A','T','C','G'};
@@ -147,9 +149,8 @@ void leitura1( char* caminhoArquivo, char*  padrao , long int** matrizOcorrencia
 
 
 void iniciar1(){
-    int qntCaracter = 7;
- ;
-    int qntElementos = 7;
+    int qntCaracter = K;
+    int qntElementos = K;
     int contElementos = 0;
     int contParecido = 0;
     char nucleos[4] = {'A','T','C','G'};
@@ -343,9 +344,8 @@ void leitura2( char* caminhoArquivo, char*  padrao , long int** matrizOcorrencia
 }
 
 void iniciar2(){
-    int qntCaracter = 7;
- ;
-    int qntElementos = 7;
+    int qntCaracter = K;
+    int qntElementos = K;
     int contElementos = 0;
     int contParecido = 0;
     char nucleos[4] = {'A','T','C','G'};
